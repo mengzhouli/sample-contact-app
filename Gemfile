@@ -7,6 +7,7 @@ end
 
 gem "bootstrap-sass"
 gem 'devise'
+gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
@@ -37,6 +38,10 @@ gem "simple_form"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'minitest-reporters'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
