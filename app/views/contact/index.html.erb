@@ -3,6 +3,22 @@
     <h1>Your Contacts</h1>
   </div>
 </div>
+<div class="container text-center new-contact">
+  <h3>Add a new person to your contact list!</h3>
+  <div class="form-box">
+    <%= simple_form_for(@temp_contact, :url=> {:action=>'create'}) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :first_name, placeholder: 'John'%>
+      <%= f.input :last_name, placeholder: 'Doe'%>
+      <%= f.input :phone_number, placeholder: '(514)435-5678'%>
+      <%= f.input :email, placeholder: 'john@gmail.com'%>
+      <%= f.input :address, placeholder: '294 Saint-Catherine St W, Montreal, Canada' %>
+      <%= f.input :tag_list, placeholder: 'family,client' %>
+      <%= f.button :submit, value: 'Submit', class: "btn btn-success" %>
+    <% end %>
+</div>
+
+</div>
 <div class="wrapper">
   <div class="container text-center">
     <div class="row">

@@ -1,15 +1,14 @@
 class ContactController < ApplicationController
 	def index
 		@all_contacts = current_user.contacts.order("last_name ASC")
-	end
-
-	def show
-	end
-
-	def new
+		@temp_contact = Contact.new
 	end
 
 	def create
+		new_contact = Contact.new(contact_params)
+		new_contact.user = current_user
+		new_contact.save!
+		redirect_to contact_index_path
 	end
 
 	def edit
