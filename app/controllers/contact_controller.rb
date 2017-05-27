@@ -1,6 +1,6 @@
 class ContactController < ApplicationController
 	def index
-		@all_contacts = current_user.contacts
+		@all_contacts = current_user.contacts.order("last_name ASC")
 	end
 
 	def show
