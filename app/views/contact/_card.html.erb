@@ -8,5 +8,6 @@
     <%= f.input :address, value: contact.address %>
     <%= f.input :tag_list, value: contact.get_tags %>
     <%= f.button :submit, value: 'Update', class: "btn btn-success" %>
+    <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   <% end %>
 </div>
