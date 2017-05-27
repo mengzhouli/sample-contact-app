@@ -6,7 +6,7 @@ jane:
   phone_number: 5141112222
   email: jane@doe.com
   address: 3232 Sherbrooke Street West, Montreal, QC
-  tag_list: client, family
+  tag_list: client,family
   user: john
 
 james:
@@ -15,5 +15,5 @@ james:
   phone_number: 5141112222
   email: james@doe.com
   address: 3233 Sherbrooke Street West, Montreal, QC
-  tag_list: competitor, family
+  tag_list: competitor,family
   user: john
