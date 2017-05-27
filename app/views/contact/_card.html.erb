@@ -1,0 +1,12 @@
+<div class="form-box">
+  <%= simple_form_for(contact) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :first_name, value: contact.first_name %>
+    <%= f.input :last_name, value: contact.last_name %>
+    <%= f.input :phone_number, value: contact.phone_number %>
+    <%= f.input :email, value: contact.email %>
+    <%= f.input :address, value: contact.address %>
+    <%= f.input :tag_list, value: contact.get_tags %>
+    <%= f.button :submit, value: 'Update', class: "btn btn-success" %>
+  <% end %>
+</div>
