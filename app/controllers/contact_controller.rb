@@ -1,20 +1,19 @@
 class ContactController < ApplicationController
 	def index
-		search_term = ""
-		if params[:search]
-			search_term = params[:search][:search]
-		end
-
-		@all_contacts = filter_contacts(current_user.contacts, search_term)
-		# for creating a new contact
-		@temp_contact = Contact.new
+		initialize_all_contacts
 	end
 
 	def create
 		new_contact = Contact.new(contact_params)
 		new_contact.user = current_user
-		new_contact.save!
-		redirect_to contact_index_path
+		if new_contact.save
+			flash[:notice] = "You have successfully added a new contact!"
+			redirect_to contact_index_path
+		else
+			flash[:alert] = "Something went wrong with your form, check hints below each field."
+			initialize_all_contacts
+			render :index
+		end
 	end
 
 	def edit
@@ -22,8 +21,12 @@ class ContactController < ApplicationController
 
 	def update
 		contact = Contact.find(params[:id]) 
-		contact.update!(contact_params)
-    redirect_to contact_index_path
+		if contact.update(contact_params)
+			redirect_to contact_index_path
+		else
+			initialize_all_contacts
+			render :index
+		end
 	end
 
 	def destroy
@@ -33,6 +36,15 @@ class ContactController < ApplicationController
 	end
 
 	private
+
+	def initialize_all_contacts
+		search_term = ""
+		if params[:search]
+			search_term = params[:search][:search]
+		end
+
+		@all_contacts = filter_contacts(current_user.contacts, search_term)
+	end
 
 	def filter_contacts(contacts, query)
 		key = "%#{query}%"

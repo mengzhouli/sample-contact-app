@@ -1,7 +1,5 @@
-<div class="main-banner">
-  <div class="main-banner-content text-center">
-    <h1>Your Contacts</h1>
-  </div>
+<div class="main text-center">
+    <h1>Your Address Book</h1>
 </div>
 
 <div class="wrapper">
@@ -9,27 +7,33 @@
     <div class="row">
       <div class="col-sm-6 col-xs-12">
         <h3>Add a new person to your contact list!</h3>
-        <div class="form-box">
-          <%= simple_form_for(@temp_contact, :url=> {:action=>'create'}) do |f| %>
+        <div class="form-box has-warning your-contacts">
+          <%= simple_form_for(Contact.new, :url=> {:action=>'create'}) do |f| %>
             <%= f.error_notification %>
-            <%= f.input :first_name, placeholder: 'John'%>
-            <%= f.input :last_name, placeholder: 'Doe'%>
+            <%= f.input :first_name, placeholder: 'John', hint: 'required' %>
+            <%= f.input :last_name, placeholder: 'Doe', hint: 'full name must be unique'%>
             <%= f.input :phone_number, placeholder: '(514)435-5678'%>
-            <%= f.input :email, placeholder: 'john@gmail.com'%>
+            <%= f.input :email, placeholder: 'john@gmail.com', hint: 'email must be valid format' %>
             <%= f.input :address, placeholder: '294 Saint-Catherine St W, Montreal, Canada' %>
-            <%= f.input :tag_list, placeholder: 'family,client' %>
+            <%= f.input :tag_list, placeholder: 'family,client', hint: 'tags must be comma seperated, (no space)' %>
             <%= f.button :submit, value: 'Submit', class: "btn btn-success" %>
           <% end %>
         </div>
       </div>
-      <div class="col-sm-6 col-xs-12 contact-search">
-        <%= simple_form_for :search, method: 'get', wrapper_html: :inline_form, html:{class: 'form-inline materialInlineForm', id: 'contactSearchForm'} do |f| %>
-          <%= f.input :search, placeholder: 'name or tag', label: false, input_html: { class: 'input-field search-query' }, prompt: 'Type' %>
-          <%= f.submit "Find!", :class => "btn btn-primary btn-search" %>
-        <% end %>
+      <div class="col-sm-6 col-xs-12">
+        <h3>SEARCH!!!</h3>
+        <div class="your-contacts">
+          <h5>Filter and search your contacts by first name, last name, or tag!</h5>
+          <%= simple_form_for :search, method: 'get', wrapper_html: :inline_form, html:{class: 'form-inline materialInlineForm', id: 'contactSearchForm'} do |f| %>
+            <%= f.input :search, placeholder: 'name or tag', label: false, input_html: { class: 'input-field search-query' }, prompt: 'Type' %>
+            <%= f.submit "Find!", :class => "btn btn-primary btn-search" %>
+          <% end %>
+        </div>
+      </div>
     </div>
 
     <div class="row">
+      <h3>Your Contacts</h3>
       <% @all_contacts.each do |contact| %>
         <div class="col-sm-6 col-xs-12">
           <%= render 'card', contact: contact %>

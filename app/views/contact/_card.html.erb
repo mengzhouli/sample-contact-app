@@ -1,12 +1,12 @@
-<div class="form-box">
+<div class="form-box has-success your-contacts">
   <%= simple_form_for(contact) do |f| %>
     <%= f.error_notification %>
-    <%= f.input :first_name, value: contact.first_name %>
-    <%= f.input :last_name, value: contact.last_name %>
+    <%= f.input :first_name, value: contact.first_name, hint: 'required' %>
+    <%= f.input :last_name, value: contact.last_name, hint: 'full name must be unique' %>
     <%= f.input :phone_number, value: contact.phone_number %>
-    <%= f.input :email, value: contact.email %>
+    <%= f.input :email, value: contact.email, hint: 'email must be valid format' %>
     <%= f.input :address, value: contact.address %>
-    <%= f.input :tag_list, value: contact.get_tags %>
+    <%= f.input :tag_list, value: contact.get_tags, hint: 'tags must be comma seperated, (no space)' %>
     <%= f.button :submit, value: 'Update', class: "btn btn-success" %>
     <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   <% end %>
