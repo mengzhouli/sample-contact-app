@@ -1,6 +1,6 @@
 # Simple Contact List App
 
-This is a simple contact management app built using rails 5.0.2, devise gem, SASS, bootstrap.
+This is a simple contact management app built using ruby, rails 5.0.2, sqlite, devise gem, SASS, bootstrap.
 
 
 ### How to Run in Development
