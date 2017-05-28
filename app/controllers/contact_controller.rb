@@ -1,6 +1,12 @@
 class ContactController < ApplicationController
 	def index
-		@all_contacts = current_user.contacts.order("last_name ASC")
+		search_term = ""
+		if params[:search]
+			search_term = params[:search][:search]
+		end
+
+		@all_contacts = filter_contacts(current_user.contacts, search_term)
+		# for creating a new contact
 		@temp_contact = Contact.new
 	end
 
@@ -28,7 +34,13 @@ class ContactController < ApplicationController
 
 	private
 
+	def filter_contacts(contacts, query)
+		key = "%#{query}%"
+		contacts.where('first_name LIKE :query OR last_name LIKE :query OR tag_list LIKE :query', query: key).order(:last_name)
+	end
+
 	def contact_params
 		params.require(:contact).permit(:first_name, :last_name, :phone_number, :email, :address, :tag_list)
 	end
+
 end

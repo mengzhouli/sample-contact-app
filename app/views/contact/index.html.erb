@@ -3,24 +3,32 @@
     <h1>Your Contacts</h1>
   </div>
 </div>
-<div class="container text-center new-contact">
-  <h3>Add a new person to your contact list!</h3>
-  <div class="form-box">
-    <%= simple_form_for(@temp_contact, :url=> {:action=>'create'}) do |f| %>
-      <%= f.error_notification %>
-      <%= f.input :first_name, placeholder: 'John'%>
-      <%= f.input :last_name, placeholder: 'Doe'%>
-      <%= f.input :phone_number, placeholder: '(514)435-5678'%>
-      <%= f.input :email, placeholder: 'john@gmail.com'%>
-      <%= f.input :address, placeholder: '294 Saint-Catherine St W, Montreal, Canada' %>
-      <%= f.input :tag_list, placeholder: 'family,client' %>
-      <%= f.button :submit, value: 'Submit', class: "btn btn-success" %>
-    <% end %>
-</div>
 
-</div>
 <div class="wrapper">
   <div class="container text-center">
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        <h3>Add a new person to your contact list!</h3>
+        <div class="form-box">
+          <%= simple_form_for(@temp_contact, :url=> {:action=>'create'}) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :first_name, placeholder: 'John'%>
+            <%= f.input :last_name, placeholder: 'Doe'%>
+            <%= f.input :phone_number, placeholder: '(514)435-5678'%>
+            <%= f.input :email, placeholder: 'john@gmail.com'%>
+            <%= f.input :address, placeholder: '294 Saint-Catherine St W, Montreal, Canada' %>
+            <%= f.input :tag_list, placeholder: 'family,client' %>
+            <%= f.button :submit, value: 'Submit', class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12 contact-search">
+        <%= simple_form_for :search, method: 'get', wrapper_html: :inline_form, html:{class: 'form-inline materialInlineForm', id: 'contactSearchForm'} do |f| %>
+          <%= f.input :search, placeholder: 'name or tag', label: false, input_html: { class: 'input-field search-query' }, prompt: 'Type' %>
+          <%= f.submit "Find!", :class => "btn btn-primary btn-search" %>
+        <% end %>
+    </div>
+
     <div class="row">
       <% @all_contacts.each do |contact| %>
         <div class="col-sm-6 col-xs-12">
