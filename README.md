@@ -26,7 +26,7 @@ Assuming you've installed Ruby:
 
 5. Login with test user to see app with seeded data
 
-email: maudie@example.org
+email: test@test.com
 
 password: pppassword
 
