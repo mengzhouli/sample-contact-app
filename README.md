@@ -1,24 +1,29 @@
-# README
+# Simple Contact List App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple contact management app built using rails 5.0.2, devise gem, SASS, bootstrap.
 
-Things you may want to cover:
+### How to run the test suite
+`rake`
 
-* Ruby version
+### How to Run in Development
 
-* System dependencies
+Assuming you've installed Ruby:
 
-* Configuration
+1. Clone the Repo onto your Local Machine
+`git clone https://github.com/mengzhouli/sample-contact-app.git`
 
-* Database creation
+2. Navigate to the Project Directory and Install Relevant Gems
+`bundle install`
 
-* Database initialization
+3. Create, migrate and seed the database
+`rails db:migrate db:seed`
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Start the Rails Server From Within the Project Directory
+`rails s`
 
-* Deployment instructions
+5. Login with test user to see app with seeded data
 
-* ...
+email: maudie@example.org
+password: pppassword
+
